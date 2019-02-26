@@ -52,7 +52,7 @@ class GameManager:
 
     def __init__(self, map_name):
         self.map_name = map_name
-        self.obs_specs = ['RGBD_INTERLACED', 'VEL.TRANS', 'VEL.ROT']
+        self.obs_specs = ['RGBD_INTERLEAVED', 'VEL.TRANS', 'VEL.ROT']
 
         self.lab = deepmind_lab.Lab(map_name, self.obs_specs, config={
             'fps': str(Config.FPS),
@@ -75,7 +75,7 @@ class GameManager:
 
     def get_state(self):
         obs = self.lab.observations()  # dict of Numpy arrays
-        image = obs['RGBD_INTERLACED']
+        image = obs['RGBD_INTERLEAVED']
 
         # create a low resolution (4x16) depth map from the 84x84 image
         depth_map = image[:,:,3]
